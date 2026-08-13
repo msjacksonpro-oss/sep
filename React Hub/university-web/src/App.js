@@ -6,6 +6,7 @@ import CourseDetails from './components/CourseDetails';
 import StudentsPage from './components/StudentsPage';
 import CoursesPage from './components/CoursesPage';
 import { Routes, Route, Link } from 'react-router-dom';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Navbar />
 
       <Routes>
+        <Route path="/login" element={<Login />} /> 
         {/* Home Page */}
         <Route path="/" element={<Home />} />
 
