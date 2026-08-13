@@ -1,64 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: ""
-  });
-  const [message, setMessage] = useState("");
+    const { login } = useContext(AuthContext); // context
+    const [creds, setCreds] = useState({
+        username: "",
+        password: ""
+    });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setCreds((prev) => ({ ...prev, [name]: value }));
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    // LOGIN FUNCTION
+    const handleLogin = async () => {
+        try {
+            const res = await axios.post(
+                "http://127.0.0.1:8000/api-token-auth/",
+                creds
+            );
 
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api-token-auth/",
-        formData
-      );
+            const token = res.data.token;
 
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-      axios.defaults.headers.common["Authorization"] = `Token ${token}`;
-      setMessage("Login successful.");
-    } catch (error) {
-      console.log(error.response?.data || error.message);
-      setMessage("Login failed. Please check your credentials.");
-    }
-  };
+            // Save token
+            localStorage.setItem("userToken", token);
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: 300 }}>
-        <input
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
+            // Attach token globally
+            axios.defaults.headers.common[
+                "Authorization"
+            ] = `Token ${token}`;
+            // store user globally
+            login(creds.username);
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+            alert("Login Successful!");
 
-        <button type="submit">Login</button>
-      </form>
+        } catch (err) {
+            alert("Invalid Credentials");
+            console.log(err.response?.data);
+        }
+    };
 
-      <p>{message}</p>
+    return (
+        // Add component UI / JSX here
+        <div>
+      <h2>Login</h2>
+      <input
+        name="username"
+        placeholder="Username"
+        onChange={handleInputChange}
+      />
+      <br />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        onChange={handleInputChange}
+      />
+      <br />
+      <button onClick={handleLogin}>Login</button>
     </div>
-  );
+    );
 }
 
 export default Login;
