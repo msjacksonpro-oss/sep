@@ -1,0 +1,71 @@
+.course-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 4px solid #764ba2;
+  max-width: 320px;
+}
+
+.course-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.course-card h3 {
+  margin: 0 0 0.75rem 0;
+  color: #1a202c;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.course-card-code {
+  display: inline-block;
+  background: #edf2f7;
+  color: #667eea;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.course-card p {
+  margin: 0.5rem 0;
+  color: #4a5568;
+  font-size: 0.95rem;
+}
+
+.course-card .credits {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.course-card .workload {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.course-card .workload.heavy {
+  background: #fed7d7;
+  color: #c53030;
+}
+
+.course-card .workload.moderate {
+  background: #feebc8;
+  color: #c05621;
+}
+
+@media (max-width: 768px) {
+  .course-card {
+    max-width: 100%;
+    margin: 0.75rem 0;
+  }
+}

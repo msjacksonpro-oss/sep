@@ -1,0 +1,36 @@
+.title-updater-container {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.title-updater-btn {
+  padding: 0.875rem 1.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.title-updater-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.title-updater-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .title-updater-container {
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+}

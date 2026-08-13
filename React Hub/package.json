@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "npm --prefix university-web start",
+    "build": "npm --prefix university-web run build"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.19",
+    "tailwindcss": "^3.4.19"
+  },
+  "dependencies": {
+    "axios": "^1.18.1"
+  }
+}
